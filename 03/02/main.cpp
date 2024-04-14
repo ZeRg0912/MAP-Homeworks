@@ -21,7 +21,7 @@ int main() {
 	std::cout << "Before:\n";
 	Print(list);
 	std::cout << "After:\n"; 
-	ForEachParallel(list.begin(), list.end(), square, 2);
+	ForEachParallel(list.begin(), list.end(), square);
 	Print(list);
 	/*auto end = std::chrono::steady_clock::now();
 	auto elapsed_seconds = static_cast<std::chrono::duration<double>>(end - start);
@@ -36,7 +36,7 @@ int main() {
 	std::cout << "Before:\n";
 	Print(vector);
 	std::cout << "After:\n";
-	ForEachParallel(vector.begin(), vector.end(), square, 2);
+	ForEachParallel(vector.begin(), vector.end(), square);
 	Print(vector);
 	/*end = std::chrono::steady_clock::now(); 
 	elapsed_seconds = static_cast<std::chrono::duration<double>>(end - start);

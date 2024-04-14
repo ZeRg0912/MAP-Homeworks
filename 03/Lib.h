@@ -76,16 +76,16 @@ T SelectionSort(T& container) {
 }
 
 template<typename Iterator, typename Function>
-void ForEachParallel(Iterator begin, Iterator end, Function& func, size_t chunk_size) {
+void ForEachParallel(Iterator begin, Iterator end, Function& func) {
 	auto total_size = std::distance(begin, end);
 	if (total_size == 0) return;
 
-	if (total_size <= chunk_size) std::for_each(begin, end, func);
+	if (total_size == 1) std::for_each(begin, end, func);
 	else {
 		Iterator mid = begin;
 		std::advance(mid, total_size / 2);
-		std::future<void> fut1 = std::async(std::launch::async, ForEachParallel<Iterator, Function>, begin, mid, std::ref(func), chunk_size);
-		std::future<void> fut2 = std::async(std::launch::async, ForEachParallel<Iterator, Function>, mid, end, std::ref(func), chunk_size);
+		std::future<void> fut1 = std::async(std::launch::async, ForEachParallel<Iterator, Function>, begin, mid, std::ref(func));
+		std::future<void> fut2 = std::async(std::launch::async, ForEachParallel<Iterator, Function>, mid, end, std::ref(func));
 		fut1.get();
 		fut2.get();
 	}
