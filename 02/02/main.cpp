@@ -20,6 +20,7 @@ std::mutex console_mutex;
 
 void ClearConsole() {
     std::cout << "\x1B[2J\x1B[H";
+    system("cls");
 }
 
 template<typename T>

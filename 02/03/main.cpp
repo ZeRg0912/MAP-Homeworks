@@ -27,6 +27,19 @@ int main() {
 	std::thread view_second_after(&Data::Print, second);
 	view_second_after.join();
 
+	// UNIQUE LOCK
+	std::thread swap_unique(&SwapUniqueLock, std::ref(first), std::ref(second));
+	swap_unique.join();
+
+	std::cout << "\n\nAFTER SWAP UNIQUE LOCK:\n";
+	std::cout << "First object:\n";
+	std::thread view_first_after_unique(&Data::Print, first);
+	view_first_after_unique.join();
+
+	std::cout << "Second object:\n";
+	std::thread view_second_after_unique(&Data::Print, second);
+	view_second_after_unique.join();
+
 	// SCOPED LOCK SWAP
 	std::thread swap_scoped(&SwapScopedLock, std::ref(first), std::ref(second));
 	swap_scoped.join();
@@ -39,19 +52,6 @@ int main() {
 	std::cout << "Second object:\n";
 	std::thread view_second_after_scoped(&Data::Print, second);
 	view_second_after_scoped.join();
-
-	// UNIQUE LOCK
-	std::thread swap_unique(&SwapUniqueLock, std::ref(first), std::ref(second));
-	swap_unique.join();
-
-	std::cout << "\n\nAFTER SWAP SCOPED LOCK:\n";
-	std::cout << "First object:\n";
-	std::thread view_first_after_unique(&Data::Print, first);
-	view_first_after_unique.join();
-
-	std::cout << "Second object:\n";
-	std::thread view_second_after_unique(&Data::Print, second);
-	view_second_after_unique.join();
 
 	return 0;
 }
