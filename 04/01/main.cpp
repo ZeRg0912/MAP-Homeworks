@@ -5,9 +5,9 @@
 
 int main() {
     std::map<std::string, std::vector<int>> coord;
-    coord["x"] = std::vector<int> {1, 4, 6, 9, 3, 12, 5, 12};
-    coord["y"] = std::vector<int> {9, 6, 1, 7, 2, 13, 12, 21};
-    coord["z"] = std::vector<int> {1, 11, 12, 21, 6, 8, 3, 5};
+    coord["x"] = std::vector<int> {1, 10, 6, 9, 3, 12, 5, 12};
+    coord["y"] = std::vector<int> {9, 3, 1, 7, 2, 13, 12, 21};
+    coord["z"] = std::vector<int> {1, 16, 12, 21, 6, 8, 3, 5};
 
     std::cout << "Cube:\n";
     Shape cube(3, coord);
